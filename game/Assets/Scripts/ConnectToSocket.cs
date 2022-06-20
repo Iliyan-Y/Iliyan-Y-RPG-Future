@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using SocketIOClient;
 using SocketIOClient.Newtonsoft.Json;
 using UnityEngine;
-using UnityEngine.UI;
-using Newtonsoft.Json.Linq;
+
 
 public class ConnectToSocket : MonoBehaviour
 {
 
   public SocketIOUnity socket;
 
-
   public GameObject objectToSpin;
-
-
-
 
   // Start is called before the first frame update
   void Start()
@@ -81,10 +76,10 @@ public class ConnectToSocket : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (Input.GetKeyDown(KeyCode.W))
-    {
-      socket.Emit("hello", "TEXT FROM CLIENT by W");
-    }
+    // if (Input.GetKeyDown(KeyCode.W))
+    // {
+    //   socket.Emit("hello", "TEXT FROM CLIENT by W");
+    // }
   }
 
 

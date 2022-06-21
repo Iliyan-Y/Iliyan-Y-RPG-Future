@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 
   public CharacterController controller;
   public Transform cam;
-  float turningSpeed = 80;
   float verticalInput;
   float horizontalInput;
   float speed = 5;
@@ -32,16 +31,14 @@ public class PlayerController : MonoBehaviour
 
       float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothAngleTime);
 
-      transform.rotation = Quaternion.Euler(90f, angle, 0f);
+      transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
       Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
       controller.Move(moveDir.normalized * speed * Time.deltaTime);
     }
 
-    // transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
 
-    // transform.Rotate(Vector3.forward * Time.deltaTime * turningSpeed * horizontalInput);
   }
 
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 public class ConnectToSocket : MonoBehaviour
 {
 
+
   public SocketIOUnity socket;
 
   public GameObject objectToSpin;
@@ -76,6 +77,7 @@ public class ConnectToSocket : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+
     // if (Input.GetKeyDown(KeyCode.W))
     // {
     //   socket.Emit("hello", "TEXT FROM CLIENT by W");

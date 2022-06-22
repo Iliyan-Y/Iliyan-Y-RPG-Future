@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
   public Transform cam;
   float verticalInput;
   float horizontalInput;
-  float speed = 5;
+  float speed = 25;
   float smoothAngleTime = 0.1f;
   float turnSmoothVelocity;
+
+
   // Start is called before the first frame update
 
 
@@ -27,15 +29,29 @@ public class PlayerController : MonoBehaviour
 
     if (direction.magnitude >= 0.1f)
     {
-      float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
 
-      float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothAngleTime);
+      if (Input.GetMouseButton(1))
+      {
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
 
-      transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothAngleTime);
 
-      Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-      controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        controller.Move(moveDir.normalized * speed * Time.deltaTime);
+      }
+      else
+      {
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothAngleTime);
+
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        controller.Move(direction * speed * Time.deltaTime);
+      }
+
     }
 
 

@@ -10,9 +10,12 @@ public class PlayerController : MonoBehaviour
   float verticalInput;
   float horizontalInput;
   float speed = 25;
-  float smoothAngleTime = 0.1f;
+  float smoothAngleTime = 1.8f;
   float turnSmoothVelocity;
+  float turnSmoothVelocityVertical;
   float targetAngle;
+
+
 
 
   // Start is called before the first frame update
@@ -39,9 +42,12 @@ public class PlayerController : MonoBehaviour
 
         targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
 
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothAngleTime);
+        float horizontalAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothAngleTime);
 
-        transform.rotation = Quaternion.Euler(0, angle, 0f);
+        float verticalAngle = Mathf.SmoothDampAngle(transform.eulerAngles.x, cam.eulerAngles.x, ref turnSmoothVelocityVertical, smoothAngleTime);
+
+
+        transform.rotation = Quaternion.Euler(verticalAngle, horizontalAngle, 0f);
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 

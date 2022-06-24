@@ -8,7 +8,14 @@ public class LogIn : MonoBehaviour
 
   public void GameLogIn()
   {
-    SceneManager.LoadScene("Space");
+    AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Space");
+
+    // Wait until the asynchronous scene fully loads
+    while (!asyncLoad.isDone)
+    {
+      Debug.Log("Loading...");
+      //  yield return null;
+    }
   }
 
 }

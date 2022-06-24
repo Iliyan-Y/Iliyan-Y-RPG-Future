@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RpgData;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     if (Input.GetMouseButton(1))
     {
+      SocketIoController.Test();
       Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput).normalized;
       if (direction.magnitude >= 0.1f)
       {

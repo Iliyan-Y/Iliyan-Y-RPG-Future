@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using RpgData;
 
 public class LogIn : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class LogIn : MonoBehaviour
   List<AsyncOperation> sceneToLoad = new List<AsyncOperation>();
   public void StartGame()
   {
+    SocketIoController.InitializeConnection();
     HideHome();
     ShowLoading();
     sceneToLoad.Add(SceneManager.LoadSceneAsync("Space"));

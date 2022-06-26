@@ -5,25 +5,40 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RpgData;
 
-
 public class StartGame : MonoBehaviour
 {
+  string backendUr = RpgData.WebHelpers.backendUrl;
   public Image loadingProgressBar;
   public GameObject home;
   public GameObject loadingInterface;
 
+
+
   List<AsyncOperation> sceneToLoad = new List<AsyncOperation>();
 
 
-  public void SignUp()
+  public async void SignUp()
   {
-    StartNewGame();
+    //var data =  StartCoroutine(WebHelpers.PostRequest("", ""));
+
+    Player p = new Player("", "kiro@bg.com");
+    Debug.Log(p.toJson());
+    var data = await WebHelpers.PostRequestAsync(backendUr + "user", p.toJson());
+    Debug.Log("data");
+    Debug.Log(data);
+
+
+
+    // StartNewGame();  
   }
 
   public void LogIn()
   {
     StartNewGame();
   }
+
+
+
 
   void StartNewGame()
   {

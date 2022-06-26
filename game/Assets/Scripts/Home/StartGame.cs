@@ -5,16 +5,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RpgData;
 
-public class LogIn : MonoBehaviour
+
+public class StartGame : MonoBehaviour
 {
   public Image loadingProgressBar;
   public GameObject home;
   public GameObject loadingInterface;
 
   List<AsyncOperation> sceneToLoad = new List<AsyncOperation>();
-  public void StartGame()
+
+
+  public void SignUp()
   {
-    SocketIoController.InitializeConnection();
+    StartNewGame();
+  }
+
+  public void LogIn()
+  {
+    StartNewGame();
+  }
+
+  void StartNewGame()
+  {
+    //SocketIoController.InitializeConnection();
     HideHome();
     ShowLoading();
     sceneToLoad.Add(SceneManager.LoadSceneAsync("Space"));
@@ -47,16 +60,7 @@ public class LogIn : MonoBehaviour
 
   }
 
-  // public void GameLogIn()
-  // {
-  //   AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Space");
 
-  //   // Wait until the asynchronous scene fully loads
-  //   while (!asyncLoad.isDone)
-  //   {
-  //     Debug.Log("Loading...");
-  //     //  yield return null;
-  //   }
-  // }
 
 }
+

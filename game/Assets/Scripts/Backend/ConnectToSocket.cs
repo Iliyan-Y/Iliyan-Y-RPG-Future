@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SocketIOClient;
 using SocketIOClient.Newtonsoft.Json;
 using UnityEngine;
-using RpgData;
+
 
 namespace RpgData
 {

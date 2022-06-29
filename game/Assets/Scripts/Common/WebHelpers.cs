@@ -27,14 +27,27 @@ namespace RpgData
 
     public static async Task<string> PostRequestAsync(string url, string bodyJsonString)
     {
-      using (var www = UnityWebRequest.Post(url, bodyJsonString))
+
+      using (UnityWebRequest www = UnityWebRequest.Post(url, bodyJsonString))
       {
-        var operation = www.SendWebRequest();
+        UnityWebRequestAsyncOperation operation = www.SendWebRequest();
         while (!operation.isDone)
-          //await Task.Delay(100);
           await Task.Yield();
+
         var data = www.downloadHandler.text; //You can process text - bytes - etc...
-        return data; //Processes the downloaded information
+
+        if (www.responseCode == 200)
+        {
+          Debug.Log("Player created");
+          return data;
+        }
+        else
+        {
+          Debug.Log("Error creating new player");
+          Debug.Log(data);
+          return "";
+        }
+
       }
     }
   }

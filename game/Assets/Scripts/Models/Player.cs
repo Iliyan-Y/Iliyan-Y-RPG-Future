@@ -14,7 +14,8 @@ namespace RpgData
       this.id = id;
       this.email = email;
     }
-
+    //add
+    //second constructor from json
 
     public string toJson()
     {

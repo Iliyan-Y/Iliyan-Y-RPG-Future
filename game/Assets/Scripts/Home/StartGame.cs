@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RpgData;
+using UnityEngine.Networking;
 
 public class StartGame : MonoBehaviour
 {
@@ -21,14 +22,12 @@ public class StartGame : MonoBehaviour
   {
     //var data =  StartCoroutine(WebHelpers.PostRequest("", ""));
 
-    Player p = new Player("", "kiro@bg.com");
+    Player p = new Player("", "kiro1@bg.com");
     Debug.Log(p.toJson());
-    var data = await WebHelpers.PostRequestAsync(backendUr + "user", p.toJson());
-    Debug.Log("data");
+    string data = await WebHelpers.PostRequestAsync(backendUr + "user", p.toJson());
+    if (data == "") return;
     Debug.Log(data);
-
-
-
+    // convert data to player object
     // StartNewGame();  
   }
 

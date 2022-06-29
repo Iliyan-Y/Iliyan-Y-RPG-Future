@@ -4,29 +4,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RpgData;
-using UnityEngine.Networking;
+using TMPro;
 
 public class StartGame : MonoBehaviour
 {
-  string backendUr = RpgData.WebHelpers.backendUrl;
+
   public Image loadingProgressBar;
   public GameObject home;
   public GameObject loadingInterface;
+  public Player currentPlayer;
 
-
-
+  // private variables
+  TMP_InputField userName;
+  string backendUr = RpgData.WebHelpers.backendUrl;
   List<AsyncOperation> sceneToLoad = new List<AsyncOperation>();
+
+  void Start()
+  {
+    userName = GameObject.Find("UserNameInput").GetComponent<TMP_InputField>();
+  }
 
 
   public async void SignUp()
   {
     //var data =  StartCoroutine(WebHelpers.PostRequest("", ""));
 
-    Player p = new Player("", "kiro1@bg.com");
-    Debug.Log(p.toJson());
+    Player p = new Player("", userName.text);
     string data = await WebHelpers.PostRequestAsync(backendUr + "user", p.toJson());
     if (data == "") return;
-    Debug.Log(data);
+    currentPlayer = Player.fromJson(data);
+    Debug.Log("currentPlayer");
+    Debug.Log(currentPlayer);
+    Debug.Log(currentPlayer.id);
+    Debug.Log(currentPlayer.email);
     // convert data to player object
     // StartNewGame();  
   }

@@ -17,6 +17,11 @@ namespace RpgData
     //add
     //second constructor from json
 
+    public static Player fromJson(string json)
+    {
+      return Newtonsoft.Json.JsonConvert.DeserializeObject<Player>(json);
+    }
+
     public string toJson()
     {
 

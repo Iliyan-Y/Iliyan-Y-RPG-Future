@@ -1069,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4836347542626515975, guid: 793adab6545d36101a3ca5c1290bc66a, type: 3}
       propertyPath: m_Name
-      value: Text (TMP)
+      value: TitleText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 793adab6545d36101a3ca5c1290bc66a, type: 3}
@@ -1275,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7352709032880803642, guid: 618a92fea320eb6e881c66637c70d262, type: 3}
       propertyPath: m_Name
-      value: InputField (TMP)
+      value: UserNameInput
       objectReference: {fileID: 0}
     - target: {fileID: 7352709032880803643, guid: 618a92fea320eb6e881c66637c70d262, type: 3}
       propertyPath: m_Pivot.x

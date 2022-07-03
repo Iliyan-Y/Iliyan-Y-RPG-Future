@@ -80,11 +80,5 @@ namespace RpgData
       }
     }
 
-
-    // void OnApplicationQuit()
-    // {
-    //   Debug.Log("Exiting the app ... ");
-    //   socket.Disconnect();
-    // }
   }
 }

@@ -12,7 +12,7 @@ public class StartGame : MonoBehaviour
   public Image loadingProgressBar;
   public GameObject home;
   public GameObject loadingInterface;
-  public Player currentPlayer;
+
 
   // private variables
   TMP_InputField userName;
@@ -28,17 +28,12 @@ public class StartGame : MonoBehaviour
   public async void SignUp()
   {
     //var data =  StartCoroutine(WebHelpers.PostRequest("", ""));
-
     Player p = new Player("", userName.text);
     string data = await WebHelpers.PostRequestAsync(backendUr + "user", p.toJson());
     if (data == "") return;
-    currentPlayer = Player.fromJson(data);
-    Debug.Log("currentPlayer");
-    Debug.Log(currentPlayer);
-    Debug.Log(currentPlayer.id);
-    Debug.Log(currentPlayer.email);
-    // convert data to player object
-    // StartNewGame();  
+
+    CurrentState.player = Player.fromJson(data);
+    StartNewGame();
   }
 
   public void LogIn()
@@ -47,11 +42,9 @@ public class StartGame : MonoBehaviour
   }
 
 
-
-
   void StartNewGame()
   {
-    //SocketIoController.InitializeConnection();
+    SocketIoController.InitializeConnection();
     HideHome();
     ShowLoading();
     sceneToLoad.Add(SceneManager.LoadSceneAsync("Space"));

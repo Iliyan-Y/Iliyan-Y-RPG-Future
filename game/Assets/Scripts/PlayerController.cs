@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RpgData;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,10 +17,18 @@ public class PlayerController : MonoBehaviour
   float turnSmoothVelocityVertical;
   float targetAngle;
 
+  TMP_Text username;
+
+  Player player = CurrentState.player;
 
 
+  void Start()
+  {
 
-  // Start is called before the first frame update
+    username = GameObject.Find("PlayerName").GetComponent<TMP_Text>();
+    username.SetText(player.email);
+
+  }
 
 
   // Update is called once per frame

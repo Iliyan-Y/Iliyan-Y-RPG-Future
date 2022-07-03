@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using RpgData;
 
 public class CameraController : MonoBehaviour
 {
@@ -17,6 +17,13 @@ public class CameraController : MonoBehaviour
   void Update()
   {
     CameraZoom();
+  }
+
+
+  void OnApplicationQuit()
+  {
+    Debug.Log("Logging out from  the game ... ");
+    SocketIoController.socket.Disconnect();
   }
 
   public float GetAxisCustom(string axisName)
